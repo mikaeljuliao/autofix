@@ -550,7 +550,109 @@ body {
 
 
 
+/* Fedebeacks  */
 
+
+.feedback-container{
+  display: flex;
+  padding: 15px;
+  justify-content: center;  /* Centraliza o conteúdo horizontalmente */
+  margin-bottom: 15px;
+}
+/* Estilo para a div do feedback */
+#feedback {
+  background: #fff; /* Cor de fundo branca para a área de feedback */
+  padding: 25px; /* Espaçamento interno */
+  max-width: 500px; /* Largura máxima da div */
+  width: 100%; /* Largura 100% até o limite máximo */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Sombra suave */
+  text-align: center; /* Texto centralizado */
+}
+
+/* Estilo para as estrelas de avaliação */
+.stars {
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+/* Estilo para cada estrela individual */
+.star {
+  font-size: 32px; /* Tamanho da estrela */
+  cursor: pointer; /* Mostra o cursor como ponteiro ao passar o mouse */
+  color: #ccc; /* Cor da estrela (cinza claro) */
+  transition: color 0.3s ease; /* Transição suave ao passar o mouse */
+}
+
+/* Estilo para a estrela selecionada */
+.star.selected {
+  color: #f7b500; /* Cor amarela para a estrela selecionada */
+}
+
+/* Caixa de comentário que aparece após clicar nas estrelas */
+#comentario {
+  display: none; /* Inicialmente escondido */
+  margin-top: 15px; /* Margem superior */
+}
+
+/* Estilo da área de texto do comentário */
+#comentario textarea {
+  width: 100%; /* A caixa de texto ocupa 100% da largura */
+  height: 80px; /* Altura fixa */
+  padding: 10px; /* Preenchimento interno */
+  border-radius: 5px; /* Cantos arredondados */
+  border: 1px solid #ccc; /* Borda cinza */
+  resize: none; /* Impede redimensionamento manual */
+  font-size: 14px; /* Tamanho da fonte */
+}
+
+/* Estilo para os botões de "Enviar" e "Refazer" */
+#botoes {
+  display: none; /* Inicialmente escondido */
+  margin-top: 15px;
+  display: flex; /* Utilizando flexbox para alinhar os botões */
+  justify-content: center; /* Alinha os botões no centro */
+  gap: 10px; /* Espaço entre os botões */
+}
+
+/* Estilo de botões */
+button {
+  margin: 5px; /* Margem entre os botões */
+  padding: 8px 14px; /* Tamanho e preenchimento do botão */
+  border: none; /* Remove bordas do botão */
+  border-radius: 5px; /* Cantos arredondados */
+  cursor: pointer; /* Mostra o ponteiro do mouse ao passar sobre o botão */
+  font-weight: bold; /* Texto em negrito */
+}
+
+/* Estilo específico para o botão de enviar */
+#enviar {
+  background-color: #007BFF; /* Cor azul para o botão de enviar */
+  color: white; /* Texto branco */
+}
+
+/* Estilo para o botão de resetar */
+#resetar {
+  background-color: #ccc; /* Cor cinza para o botão de resetar */
+  color: #333; /* Texto escuro */
+}
+
+/* Estilo para a mensagem de feedback após enviar */
+#feedback-msg {
+  margin-top: 20px;
+  font-size: 16px;
+  opacity: 0; /* Inicialmente invisível */
+  transition: opacity 0.3s; /* Transição suave ao aparecer */
+}
+
+/* Emojis da mensagem de feedback */
+.emoji {
+  font-size: 24px;
+  margin-top: 5px;
+}
 
 /*-----------------------------------*\
   #FOOTER

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!--<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,294 +8,342 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 
     <style>
-        #faq {
-  font-family: Arial, sans-serif;
-  margin: 20px;
-  padding: 20px;
-  background-color: #f8f9fa;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-#faq h2 {
-  font-size: 24px;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.faq-item {
-  background-color: #fff;
-  margin: 10px 0;
-  padding: 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.faq-item:hover {
-  background-color: #f0f0f0;
-  transform: scale(1.02);
-}
-
-.faq-pergunta {
-  font-size: 18px;
-  color: #007bff;
+      body {
   margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.faq-pergunta::after {
-  content: '+';
-  font-size: 22px;
-  color: #007bff;
-  margin-left: 10px;
-}
-
-.faq-pergunta.active::after {
-  content: '-';
-}
-
-.resposta {
-  margin-top: 10px;
-  font-size: 16px;
-  color: #555;
-  padding-left: 10px;
-  display: none;
-  transition: all 0.3s ease;
-}
-
-.resposta p {
-  margin: 0;
-}
-body {
-  margin: 0;
-  font-family: Arial;
+  font-family: sans-serif;
 }
 
 .secao {
   height: 100vh;
   padding: 40px;
   font-size: 2em;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #ddd;
 }
 
-#progress-container {
+#section-indicator {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: #eee;
-  z-index: 999;
-}
-
-#progress-bar {
-  height: 100%;
-  width: 0;
-  background: linear-gradient(to right, #f00, #0f0);
-  transition: width 0.2s ease-out;
-}
-
-#progress-label {
-  position: fixed;
-  top: 12px;
-  left: 10px;
-  background: #222;
-  color: #fff;
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 14px;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
   z-index: 1000;
+}
+
+.indicator-item {
+  text-decoration: none;
+  color: #555;
+  font-weight: bold;
+  transition: color 0.3s, transform 0.3s;
+}
+
+.indicator-item.active {
+  color: #e63946;
+  transform: scale(1.2);
 }
     </style>
 </head>
 <body>
-    <div id="countdown"></div>
+   
 
-
-    <div id="faq">
-        <h2>Perguntas Frequentes</h2>
-        <div class="faq-item" onclick="toggleFAQ('faq1')">
-          <p class="faq-pergunta">Como faço para agendar um serviço?</p>
-          <div id="faq1" class="resposta" style="display: none;">
-            <p>Você pode agendar um serviço através do nosso formulário online ou ligar para nossa oficina.</p>
-          </div>
-        </div>
-        <div class="faq-item" onclick="toggleFAQ('faq2')">
-          <p class="faq-pergunta">Quais os tipos de serviços que vocês oferecem?</p>
-          <div id="faq2" class="resposta" style="display: none;">
-            <p>Oferecemos troca de óleo, balanceamento, alinhamento, revisão de freios, entre outros.</p>
-          </div>
-        </div>
-        <div class="faq-item" onclick="toggleFAQ('faq3')">
-          <p class="faq-pergunta">Qual o horário de funcionamento da oficina?</p>
-          <div id="faq3" class="resposta" style="display: none;">
-            <p>Estamos abertos de segunda a sexta-feira, das 8h às 18h, e aos sábados, das 8h às 12h.</p>
-          </div>
-        </div>
-        <div class="faq-item" onclick="toggleFAQ('faq4')">
-          <p class="faq-pergunta">Vocês oferecem garantia para os serviços realizados?</p>
-          <div id="faq4" class="resposta" style="display: none;">
-            <p>Sim, todos os nossos serviços têm garantia. Para mais detalhes, consulte o termo de garantia disponível em nossa oficina.</p>
-          </div>
-        </div>
-        <div class="faq-item" onclick="toggleFAQ('faq5')">
-          <p class="faq-pergunta">Posso pagar com cartão de crédito?</p>
-          <div id="faq5" class="resposta" style="display: none;">
-            <p>Sim, aceitamos pagamento com cartão de crédito, débito e outras formas de pagamento.</p>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div id="avaliacao">
-        <h2>Avalie nosso serviço</h2>
-        <form id="form-avaliacao">
-          <label for="estrela">Dê uma nota de 1 a 5:</label>
-          <select id="estrela" name="estrela">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-          </select>
-          
-          <label for="comentario">Deixe seu comentário:</label>
-          <textarea id="comentario" name="comentario"></textarea>
-          
-          <button type="submit">Enviar Avaliação</button>
-        </form>
-      
-        <div id="mensagem-avaliacao"></div>
-      </div>
-
-
-
-
-
-
-
-
-      <div id="chat">
-        <h2>Fale Conosco</h2>
-        <div id="mensagens"></div>
-        <textarea id="mensagem"></textarea>
-        <button onclick="enviarMensagem()">Enviar</button>
-      </div>
-
-
-
-
-
-
-
-      <div id="barraProgresso"></div>
-
-
-
-
-      <div id="progress-container">
-        <div id="progress-bar"></div>
-        <div id="progress-label">Início</div>
-      </div>
-    
-      <section id="inicio" class="secao">Início da página</section>
-      <section id="sobre" class="secao">Sobre a oficina</section>
-      <section id="servicos" class="secao">Nossos serviços</section>
-      <section id="contato" class="secao">Fale conosco</section>
-    <script>
-        const countdownDate = new Date("May 15, 2025 00:00:00").getTime();
-
-const countdownFunction = setInterval(function() {
-  const now = new Date().getTime();
-  const distance = countdownDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-  document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
-
-  if (distance < 0) {
-    clearInterval(countdownFunction);
-    document.getElementById("countdown").innerHTML = "A promoção acabou!";
-  }
-}, 1000);
-
-
-
-
-
-function toggleFAQ(id) {
-  const resposta = document.getElementById(id);
-  const allAnswers = document.querySelectorAll('.resposta');
+  <div id="section-indicator">
+    <a href="#inicio" class="indicator-item" id="link-inicio">Início</a>
+    <a href="#sobre" class="indicator-item" id="link-sobre">Sobre</a>
+    <a href="#servicos" class="indicator-item" id="link-servicos">Serviços</a>
+    <a href="#contato" class="indicator-item" id="link-contato">Contato</a>
+  </div>
   
-  // Fechar todas as respostas ao clicar em uma nova
-  allAnswers.forEach((item) => {
-    if (item !== resposta) {
-      item.style.display = "none";
-      item.previousElementSibling.classList.remove('active');
+  <section id="inicio" class="secao">Início da página</section>
+  <section id="sobre" class="secao">Sobre a oficina</section>
+  <section id="servicos" class="secao">Nossos serviços</section>
+  <section id="contato" class="secao">Fale conosco</section>
+
+
+    <script>
+      const sections = document.querySelectorAll('.secao');
+const links = {
+  inicio: document.getElementById('link-inicio'),
+  sobre: document.getElementById('link-sobre'),
+  servicos: document.getElementById('link-servicos'),
+  contato: document.getElementById('link-contato')
+};
+
+window.addEventListener('scroll', () => {
+  const scrollPos = window.scrollY + window.innerHeight / 2;
+
+  // Atualiza menu lateral
+  sections.forEach(sec => {
+    if (scrollPos >= sec.offsetTop && scrollPos < sec.offsetTop + sec.offsetHeight) {
+      Object.values(links).forEach(link => link.classList.remove('active'));
+      links[sec.id].classList.add('active');
     }
   });
 
-  // Alterna o display da resposta clicada
-  if (resposta.style.display === "none") {
-    resposta.style.display = "block";
-    resposta.previousElementSibling.classList.add('active');
-  } else {
-    resposta.style.display = "none";
-    resposta.previousElementSibling.classList.remove('active');
-  }
-}
-
-
-
-
-
-
-
-document.getElementById('form-avaliacao').addEventListener('submit', function(event) {
-  event.preventDefault();
-  const estrela = document.getElementById('estrela').value;
-  const comentario = document.getElementById('comentario').value;
-
-  const mensagem = `Obrigado pela sua avaliação! Você deu ${estrela} estrelas e comentou: "${comentario}".;`
-
-  document.getElementById('mensagem-avaliacao').innerHTML = mensagem;
+  // Atualiza barra de progresso
+  const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+  const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrollPercent = (scrollTop / scrollHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrollPercent + '%';
 });
 
+    </script>
+</body>
+</html>
 
+-->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Avaliação do Atendimento</title>
+  <style>
+    /* Estilo do body: fonte padrão, fundo claro e centralização do conteúdo */
+    body {
+      font-family: Arial, sans-serif; /* Fonte utilizada no site */
+      background: #f4f4f4; /* Cor de fundo do site */
+    
+    }
 
+    .feedback-container{
+      display: flex;
+      padding: 15px;
+      justify-content: center;  /* Centraliza o conteúdo horizontalmente */
+    }
+    /* Estilo para a div do feedback */
+    #feedback {
+      background: #fff; /* Cor de fundo branca para a área de feedback */
+      padding: 25px; /* Espaçamento interno */
+      max-width: 500px; /* Largura máxima da div */
+      width: 100%; /* Largura 100% até o limite máximo */
+      border-radius: 8px; /* Cantos arredondados */
+      box-shadow: 0 0 15px rgba(0,0,0,0.1); /* Sombra suave */
+      text-align: center; /* Texto centralizado */
+    }
 
+    /* Estilo para as estrelas de avaliação */
+    .stars {
+      margin: 15px 0;
+    }
 
+    /* Estilo para cada estrela individual */
+    .star {
+      font-size: 32px; /* Tamanho da estrela */
+      cursor: pointer; /* Mostra o cursor como ponteiro ao passar o mouse */
+      color: #ccc; /* Cor da estrela (cinza claro) */
+      transition: color 0.3s ease; /* Transição suave ao passar o mouse */
+    }
 
+    /* Estilo para a estrela selecionada */
+    .star.selected {
+      color: #f7b500; /* Cor amarela para a estrela selecionada */
+    }
 
+    /* Caixa de comentário que aparece após clicar nas estrelas */
+    #comentario {
+      display: none; /* Inicialmente escondido */
+      margin-top: 15px; /* Margem superior */
+    }
 
+    /* Estilo da área de texto do comentário */
+    #comentario textarea {
+      width: 100%; /* A caixa de texto ocupa 100% da largura */
+      height: 80px; /* Altura fixa */
+      padding: 10px; /* Preenchimento interno */
+      border-radius: 5px; /* Cantos arredondados */
+      border: 1px solid #ccc; /* Borda cinza */
+      resize: none; /* Impede redimensionamento manual */
+      font-size: 14px; /* Tamanho da fonte */
+    }
 
+    /* Estilo para os botões de "Enviar" e "Refazer" */
+    #botoes {
+      display: none; /* Inicialmente escondido */
+      margin-top: 15px;
+      display: flex; /* Utilizando flexbox para alinhar os botões */
+      justify-content: center; /* Alinha os botões no centro */
+      gap: 10px; /* Espaço entre os botões */
+    }
 
+    /* Estilo de botões */
+    button {
+      margin: 5px; /* Margem entre os botões */
+      padding: 8px 14px; /* Tamanho e preenchimento do botão */
+      border: none; /* Remove bordas do botão */
+      border-radius: 5px; /* Cantos arredondados */
+      cursor: pointer; /* Mostra o ponteiro do mouse ao passar sobre o botão */
+      font-weight: bold; /* Texto em negrito */
+    }
 
+    /* Estilo específico para o botão de enviar */
+    #enviar {
+      background-color: #007BFF; /* Cor azul para o botão de enviar */
+      color: white; /* Texto branco */
+    }
 
+    /* Estilo para o botão de resetar */
+    #resetar {
+      background-color: #ccc; /* Cor cinza para o botão de resetar */
+      color: #333; /* Texto escuro */
+    }
 
+    /* Estilo para a mensagem de feedback após enviar */
+    #feedback-msg {
+      margin-top: 20px;
+      font-size: 16px;
+      opacity: 0; /* Inicialmente invisível */
+      transition: opacity 0.3s; /* Transição suave ao aparecer */
+    }
 
-function enviarMensagem() {
-  const mensagem = document.getElementById('mensagem').value;
-  const mensagens = document.getElementById('mensagens');
-  mensagens.innerHTML += <p><strong>Você:</strong> ${mensagem}</p>;
+    /* Emojis da mensagem de feedback */
+    .emoji {
+      font-size: 24px;
+      margin-top: 5px;
+    }
 
-  setTimeout(function() {
-    mensagens.innerHTML += <p><strong>Atendente:</strong> Olá! Em que posso ajudar?</p>;
-    document.getElementById('mensagem').value = ''; // Limpa o campo de entrada
-  }, 1000);
+  </style>
+</head>
+<body>
+
+<!-- Seção de feedback -->
+ <div class="feedback-container">
+<div id="feedback">
+  <h2>Como foi sua experiência conosco?</h2>
+
+  <!-- Estrelas de avaliação -->
+  <div class="stars" id="stars">
+    <span class="star" data-value="1">&#9733;</span>
+    <span class="star" data-value="2">&#9733;</span>
+    <span class="star" data-value="3">&#9733;</span>
+    <span class="star" data-value="4">&#9733;</span>
+    <span class="star" data-value="5">&#9733;</span>
+  </div>
+
+  <!-- Caixa para comentário adicional -->
+  <div id="comentario">
+    <textarea id="mensagem" placeholder="Deixe seu comentário (opcional)..."></textarea>
+  </div>
+
+  <!-- Botões de enviar e resetar -->
+  <div id="botoes">
+    <button id="enviar">Enviar feedback</button>
+    <button id="resetar">Refazer</button>
+  </div>
+
+  <!-- Mensagem de feedback após envio -->
+  <div id="feedback-msg"></div>
+</div>
+
+</div>
+<script>
+  // Seleciona todas as estrelas do sistema de avaliação
+const stars = document.querySelectorAll(".star"); // O querySelectorAll retorna uma lista de todas as estrelas (elementos com a classe 'star')
+
+/* Seleciona a caixa de comentário e os botões de envio e reset */
+const comentarioBox = document.getElementById("comentario"); // Seleciona a área de comentário (caixa de texto)
+const botoes = document.getElementById("botoes"); // Seleciona a área dos botões de enviar e resetar
+
+// Botões de interação com o feedback
+const enviarBtn = document.getElementById("enviar"); // Botão de "Enviar Feedback"
+const resetBtn = document.getElementById("resetar"); // Botão de "Resetar Avaliação"
+
+// Mensagem que aparecerá após o feedback ser enviado
+const msg = document.getElementById("feedback-msg"); // Div onde será exibido o feedback após o envio
+
+// Definindo as mensagens que aparecerão com base na nota escolhida
+const mensagens = {
+  1: { texto: "Sentimos muito pela sua experiência. Vamos melhorar!", emoji: "⚠️" }, // Se o usuário der 1 estrela
+  2: { texto: "Agradecemos seu retorno. Nossa equipe já está atenta.", emoji: "🔧" }, // Se o usuário der 2 estrelas
+  3: { texto: "Obrigado! Estamos buscando evoluir sempre.", emoji: "✅" }, // Se o usuário der 3 estrelas
+  4: { texto: "Ficamos felizes com seu retorno positivo!", emoji: "👍" }, // Se o usuário der 4 estrelas
+  5: { texto: "Excelente! Obrigado por confiar no nosso trabalho!", emoji: "⭐" } // Se o usuário der 5 estrelas
+};
+
+let notaSelecionada = 0; // Variável que armazena a nota escolhida pelo usuário, inicialmente 0 (nenhuma nota selecionada)
+
+// Laço que percorre todas as estrelas e adiciona o comportamento de clique
+stars.forEach(star => {
+  // A cada clique numa estrela, marca a estrela como selecionada
+  star.addEventListener("click", () => {
+    // star.dataset.value pega o valor da estrela clicada, que é armazenado no atributo data-value (1, 2, 3, etc.)
+    notaSelecionada = parseInt(star.dataset.value); // Converte o valor para inteiro
+
+    // Laço for para atualizar o estilo das estrelas, mostrando as estrelas selecionadas
+    stars.forEach(s => s.classList.remove("selected")); // Remove a classe 'selected' de todas as estrelas, ou seja, reseta as estrelas
+
+    // Adiciona a classe 'selected' nas estrelas que foram clicadas
+    for (let i = 0; i < notaSelecionada; i++) { // Laço for percorre até o valor da nota
+      stars[i].classList.add("selected"); // Marca a estrela como 'selected' (amarela)
+    }
+
+    // Exibe a caixa de comentário e os botões de "Enviar" e "Refazer"
+    comentarioBox.style.display = "block"; // Torna a caixa de comentário visível
+    botoes.style.display = "flex"; // Torna os botões visíveis
+  });
+});
+
+// Função de envio do feedback
+enviarBtn.addEventListener("click", () => {
+  // Pega o valor do comentário que o usuário digitou
+  const texto = document.getElementById("mensagem").value; // Acessa o conteúdo da caixa de comentário (campo de texto)
+
+  // Cria um objeto com os dados do feedback (nota e comentário)
+  const feedback = {
+    nota: notaSelecionada, // A nota que o usuário escolheu
+    comentario: texto // O comentário que o usuário deixou
+  };
+
+  // Salva o feedback no LocalStorage do navegador (armazena dados localmente)
+  localStorage.setItem("feedbackOficina", JSON.stringify(feedback)); // JSON.stringify converte o objeto para uma string para ser armazenado
+
+  // Exibe a mensagem de feedback, dependendo da nota escolhida
+  const info = mensagens[notaSelecionada]; // Pega a mensagem correspondente à nota selecionada
+  msg.innerHTML = `<p>${info.texto}</p><div class="emoji">${info.emoji}</div>;` // Exibe a mensagem e o emoji
+
+  msg.style.opacity = 1; // Torna a mensagem visível, com transição de opacidade
+});
+
+// Função de resetar a avaliação
+resetBtn.addEventListener("click", () => {
+  notaSelecionada = 0; // Reseta a nota para 0 (nenhuma estrela selecionada)
+  localStorage.removeItem("feedbackOficina"); // Remove o feedback salvo no LocalStorage
+  document.getElementById("mensagem").value = ""; // Limpa o campo de comentário
+
+  msg.innerHTML = ""; // Limpa a mensagem de feedback
+  msg.style.opacity = 0; // Torna a mensagem invisível
+
+  // Esconde a caixa de comentário e os botões novamente
+  comentarioBox.style.display = "none"; 
+  botoes.style.display = "none";
+
+  // Remove a seleção das estrelas
+  stars.forEach(s => s.classList.remove("selected"));
+});
+
+// Carrega o feedback salvo no LocalStorage (se houver um feedback armazenado)
+const salvo = localStorage.getItem("feedbackOficina"); // Pega o item "feedbackOficina" do LocalStorage
+if (salvo) { // Se houver um feedback salvo
+  const dados = JSON.parse(salvo); // Converte o feedback de volta para objeto
+  notaSelecionada = dados.nota; // Atribui a nota salva
+  document.getElementById("mensagem").value = dados.comentario; // Exibe o comentário salvo
+
+  // Marca as estrelas de acordo com a nota salva
+  for (let i = 0; i < notaSelecionada; i++) { // Laço for que percorre as estrelas até o número da nota
+    stars[i].classList.add("selected"); // Marca as estrelas de 1 até a nota escolhida
+  }
+
+  // Exibe a caixa de comentário e os botões
+  comentarioBox.style.display = "block"; // Torna a caixa de comentário visível
+  botoes.style.display = "flex"; // Torna os botões visíveis
+
+  // Exibe a mensagem de feedback com base na nota salva
+  const info = mensagens[notaSelecionada]; // Pega as informações da nota salva
+  msg.innerHTML = `<p>${info.texto}</p><div class="emoji">${info.emoji}</div>; // Exibe a mensagem e emoji
+  msg.style.opacity = 1;` // Torna a mensagem visível
 }
 
-]]
+</script>
 
-    </script>
 </body>
 </html>
