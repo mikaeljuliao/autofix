@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./assets/css/style.css">
+
+    <style>
+        #faq {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#faq h2 {
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.faq-item {
+  background-color: #fff;
+  margin: 10px 0;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.faq-item:hover {
+  background-color: #f0f0f0;
+  transform: scale(1.02);
+}
+
+.faq-pergunta {
+  font-size: 18px;
+  color: #007bff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.faq-pergunta::after {
+  content: '+';
+  font-size: 22px;
+  color: #007bff;
+  margin-left: 10px;
+}
+
+.faq-pergunta.active::after {
+  content: '-';
+}
+
+.resposta {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #555;
+  padding-left: 10px;
+  display: none;
+  transition: all 0.3s ease;
+}
+
+.resposta p {
+  margin: 0;
+}
+body {
+  margin: 0;
+  font-family: Arial;
+}
+
+.secao {
+  height: 100vh;
+  padding: 40px;
+  font-size: 2em;
+  border-bottom: 1px solid #ccc;
+}
+
+#progress-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 8px;
+  background: #eee;
+  z-index: 999;
+}
+
+#progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(to right, #f00, #0f0);
+  transition: width 0.2s ease-out;
+}
+
+#progress-label {
+  position: fixed;
+  top: 12px;
+  left: 10px;
+  background: #222;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  z-index: 1000;
+}
+    </style>
+</head>
+<body>
+    <div id="countdown"></div>
+
+
+    <div id="faq">
+        <h2>Perguntas Frequentes</h2>
+        <div class="faq-item" onclick="toggleFAQ('faq1')">
+          <p class="faq-pergunta">Como faço para agendar um serviço?</p>
+          <div id="faq1" class="resposta" style="display: none;">
+            <p>Você pode agendar um serviço através do nosso formulário online ou ligar para nossa oficina.</p>
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ('faq2')">
+          <p class="faq-pergunta">Quais os tipos de serviços que vocês oferecem?</p>
+          <div id="faq2" class="resposta" style="display: none;">
+            <p>Oferecemos troca de óleo, balanceamento, alinhamento, revisão de freios, entre outros.</p>
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ('faq3')">
+          <p class="faq-pergunta">Qual o horário de funcionamento da oficina?</p>
+          <div id="faq3" class="resposta" style="display: none;">
+            <p>Estamos abertos de segunda a sexta-feira, das 8h às 18h, e aos sábados, das 8h às 12h.</p>
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ('faq4')">
+          <p class="faq-pergunta">Vocês oferecem garantia para os serviços realizados?</p>
+          <div id="faq4" class="resposta" style="display: none;">
+            <p>Sim, todos os nossos serviços têm garantia. Para mais detalhes, consulte o termo de garantia disponível em nossa oficina.</p>
+          </div>
+        </div>
+        <div class="faq-item" onclick="toggleFAQ('faq5')">
+          <p class="faq-pergunta">Posso pagar com cartão de crédito?</p>
+          <div id="faq5" class="resposta" style="display: none;">
+            <p>Sim, aceitamos pagamento com cartão de crédito, débito e outras formas de pagamento.</p>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div id="avaliacao">
+        <h2>Avalie nosso serviço</h2>
+        <form id="form-avaliacao">
+          <label for="estrela">Dê uma nota de 1 a 5:</label>
+          <select id="estrela" name="estrela">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          
+          <label for="comentario">Deixe seu comentário:</label>
+          <textarea id="comentario" name="comentario"></textarea>
+          
+          <button type="submit">Enviar Avaliação</button>
+        </form>
+      
+        <div id="mensagem-avaliacao"></div>
+      </div>
+
+
+
+
+
+
+
+
+      <div id="chat">
+        <h2>Fale Conosco</h2>
+        <div id="mensagens"></div>
+        <textarea id="mensagem"></textarea>
+        <button onclick="enviarMensagem()">Enviar</button>
+      </div>
+
+
+
+
+
+
+
+      <div id="barraProgresso"></div>
+
+
+
+
+      <div id="progress-container">
+        <div id="progress-bar"></div>
+        <div id="progress-label">Início</div>
+      </div>
+    
+      <section id="inicio" class="secao">Início da página</section>
+      <section id="sobre" class="secao">Sobre a oficina</section>
+      <section id="servicos" class="secao">Nossos serviços</section>
+      <section id="contato" class="secao">Fale conosco</section>
+    <script>
+        const countdownDate = new Date("May 15, 2025 00:00:00").getTime();
+
+const countdownFunction = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+  if (distance < 0) {
+    clearInterval(countdownFunction);
+    document.getElementById("countdown").innerHTML = "A promoção acabou!";
+  }
+}, 1000);
+
+
+
+
+
+function toggleFAQ(id) {
+  const resposta = document.getElementById(id);
+  const allAnswers = document.querySelectorAll('.resposta');
+  
+  // Fechar todas as respostas ao clicar em uma nova
+  allAnswers.forEach((item) => {
+    if (item !== resposta) {
+      item.style.display = "none";
+      item.previousElementSibling.classList.remove('active');
+    }
+  });
+
+  // Alterna o display da resposta clicada
+  if (resposta.style.display === "none") {
+    resposta.style.display = "block";
+    resposta.previousElementSibling.classList.add('active');
+  } else {
+    resposta.style.display = "none";
+    resposta.previousElementSibling.classList.remove('active');
+  }
+}
+
+
+
+
+
+
+
+document.getElementById('form-avaliacao').addEventListener('submit', function(event) {
+  event.preventDefault();
+  const estrela = document.getElementById('estrela').value;
+  const comentario = document.getElementById('comentario').value;
+
+  const mensagem = `Obrigado pela sua avaliação! Você deu ${estrela} estrelas e comentou: "${comentario}".;`
+
+  document.getElementById('mensagem-avaliacao').innerHTML = mensagem;
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function enviarMensagem() {
+  const mensagem = document.getElementById('mensagem').value;
+  const mensagens = document.getElementById('mensagens');
+  mensagens.innerHTML += <p><strong>Você:</strong> ${mensagem}</p>;
+
+  setTimeout(function() {
+    mensagens.innerHTML += <p><strong>Atendente:</strong> Olá! Em que posso ajudar?</p>;
+    document.getElementById('mensagem').value = ''; // Limpa o campo de entrada
+  }, 1000);
+}
+
+]]
+
+    </script>
+</body>
+</html>
